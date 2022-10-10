@@ -1,9 +1,7 @@
 <script lang='ts'>
 import { defineComponent } from "vue";
-import HelloPinia from "./HelloPinia.vue";
-
-// Logo
-import logo from "../assets/logo.svg";
+import { useRouter } from "vue-router";
+import HelloPinia from "../components/HelloPinia.vue";
 
 export default defineComponent({
   components: { HelloPinia },
@@ -43,7 +41,6 @@ export default defineComponent({
           href: "https://medium.com/vuetify",
         },
       ],
-      logo,
       whatsNext: [
         {
           text: "Explore components",
@@ -60,6 +57,18 @@ export default defineComponent({
       ],
     };
   },
+  setup() {
+    const router = useRouter();
+
+    // 例えば、ボタンクリック時にページ遷移させる場合
+    const goAbout = () => {
+      router.push("/about");
+    };
+
+    return {
+      goAbout,
+    };
+  },
 });
 </script>
 
@@ -67,7 +76,7 @@ export default defineComponent({
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-img :src="logo" class="my-3" contain height="200" />
+        <v-btn @click="goAbout"> about </v-btn>
       </v-col>
 
       <v-col class="mb-4">
@@ -135,5 +144,6 @@ export default defineComponent({
       </v-col>
     </v-row>
     <HelloPinia />
+    <router-view />
   </v-container>
 </template>

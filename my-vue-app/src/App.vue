@@ -1,26 +1,22 @@
-<template>
-  <v-app>
-    <v-main>
-      <HelloWorld />
-    </v-main>
-  </v-app>
-</template>
-
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
 
 export default defineComponent({
   name: "App",
-
-  components: {
-    HelloWorld,
-  },
-
-  data() {
-    return {
-      //
-    };
-  },
 });
 </script>
+
+<template>
+  <v-app>
+    <v-main>
+      <!-- <HelloWorld /> -->
+      <v-btn color="primary">
+        <router-link to="/"> Go to Top </router-link>
+      </v-btn>
+      <v-btn color="purple">
+        <router-link to="/about"> Go to About </router-link>
+      </v-btn>
+      <router-view />
+    </v-main>
+  </v-app>
+</template>

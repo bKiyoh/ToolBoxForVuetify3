@@ -1,10 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useRouter } from "vue-router";
-import HelloPinia from "../components/HelloPinia.vue";
 
 export default defineComponent({
-  components: { HelloPinia },
+  // eslint-disable-next-line vue/no-unused-components
   name: "HelloWorld",
 
   data() {
@@ -57,28 +55,12 @@ export default defineComponent({
       ],
     };
   },
-  setup() {
-    const router = useRouter();
-
-    // 例えば、ボタンクリック時にページ遷移させる場合
-    const goAbout = () => {
-      router.push("/about");
-    };
-
-    return {
-      goAbout,
-    };
-  },
 });
 </script>
 
 <template>
   <v-container>
     <v-row class="text-center">
-      <v-col cols="12">
-        <v-btn @click="goAbout"> about </v-btn>
-      </v-col>
-
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify 3 Beta
@@ -143,7 +125,5 @@ export default defineComponent({
         </v-row>
       </v-col>
     </v-row>
-    <HelloPinia />
-    <router-view />
   </v-container>
 </template>

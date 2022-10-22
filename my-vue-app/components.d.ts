@@ -7,7 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/NavigationDrawer copy.vue')['default']
     HelloPinia: typeof import('./src/components/HelloPinia.vue')['default']
+    MainHeader: typeof import('./src/components/MainHeader.vue')['default']
     NavigationDrawer: typeof import('./src/components/NavigationDrawer.vue')['default']
     VApp: typeof import('vuetify/lib')['VApp']
     VBtn: typeof import('vuetify/lib')['VBtn']
@@ -18,8 +20,11 @@ declare module '@vue/runtime-core' {
     VListItemContent: typeof import('vuetify/lib')['VListItemContent']
     VListItemGroup: typeof import('vuetify/lib')['VListItemGroup']
     VListItemIcon: typeof import('vuetify/lib')['VListItemIcon']
+    VListTile: typeof import('vuetify/lib')['VListTile']
     VMain: typeof import('vuetify/lib')['VMain']
+    VMainHeader: typeof import('vuetify/lib')['VMainHeader']
     VNavigationDrawer: typeof import('vuetify/lib')['VNavigationDrawer']
     VRow: typeof import('vuetify/lib')['VRow']
+    VToolbarTitle: typeof import('vuetify/lib')['VToolbarTitle']
   }
 }

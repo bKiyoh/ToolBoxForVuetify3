@@ -1,14 +1,24 @@
 <script setup lang="ts">
+import { reactive } from "vue";
+
 type Navigation = { label: string; name: string; icon: string };
+
+const state = reactive({
+  navigationDrawer: true,
+});
+
+const setNavigationDrawer = () => {
+  state.navigationDrawer = !state.navigationDrawer;
+};
 
 const navigations: Array<Navigation> = [
   {
-    label: "とっぷ",
+    label: "TOP",
     name: "Home",
     icon: "mdi-ab-testing",
   },
   {
-    label: "あばうと",
+    label: "ABOUT",
     name: "About",
     icon: "mdi-ab-testing",
   },
@@ -16,63 +26,53 @@ const navigations: Array<Navigation> = [
 </script>
 
 <template>
-  <v-card>
-    <v-navigation-drawer class="bg-deep-purple" theme="dark" permanent>
-      <v-list density="compact">
-        <v-list-subheader>REPORTS</v-list-subheader>
-        <v-list-item
-          v-for="(item, i) in navigations"
-          :key="i"
-          :value="item"
-          :to="item"
-          active-color="primary"
-        >
-          <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
-          </template>
-          <v-list-item-title>{{ item.label }}</v-list-item-title>
+  <!-- header -->
+  <v-app-bar app clipped-left color="deep-purple accent-4">
+    <v-app-bar-nav-icon @click="setNavigationDrawer()" />
+
+    <v-toolbar-title>Page title</v-toolbar-title>
+
+    <v-spacer></v-spacer>
+
+    <v-btn icon>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
+
+    <v-btn icon>
+      <v-icon>mdi-magnify</v-icon>
+    </v-btn>
+
+    <v-menu left bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn icon v-bind="attrs" v-on="on">
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item v-for="n in 5" :key="n" @click="() => {}">
+          <v-list-item-title>Option {{ n }}</v-list-item-title>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
-  </v-card>
-</template>
+    </v-menu>
+  </v-app-bar>
 
-<!-- <template>
-  <v-card height="400" width="256" class="mx-auto">
-    <v-navigation-drawer permanent>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6"> Application </v-list-item-title>
-          <v-list-item-subtitle> subtext </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list-item-group>
-        <template v-for="(item, i) in navigations">
-          <v-list-item v-if="'name' in item" :key="i" :to="item">
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.label }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-group v-if="'childs' in item" :key="i">
-            <template v-slot:activator>
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.label }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-          </v-list-group>
+  <!-- navigationBar -->
+  <v-navigation-drawer app clipped v-model="state.navigationDrawer">
+    <v-list>
+      <v-list-subheader>Vuetify</v-list-subheader>
+      <v-list-item
+        v-for="(item, i) in navigations"
+        :key="i"
+        :value="item"
+        :to="item"
+        active-color="primary"
+      >
+        <template v-slot:prepend>
+          <v-icon :icon="item.icon"></v-icon>
         </template>
-      </v-list-item-group>
-    </v-navigation-drawer>
-  </v-card>
-</template> -->
+        <v-list-item-title>{{ item.label }}</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+</template>

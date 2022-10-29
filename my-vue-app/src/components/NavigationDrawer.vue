@@ -15,17 +15,22 @@ const navigations: Array<Navigation> = [
   {
     label: "TOP",
     name: "Home",
-    icon: "mdi-ab-testing",
+    icon: "mdi-home",
   },
   {
     label: "ABOUT",
     name: "About",
-    icon: "mdi-ab-testing",
+    icon: "mdi-vuetify",
   },
   {
     label: "TABLE",
     name: "Table",
-    icon: "mdi-ab-testing",
+    icon: "mdi-table",
+  },
+  {
+    label: "TABS",
+    name: "Tabs",
+    icon: "mdi-folder-table-outline ",
   },
 ];
 </script>

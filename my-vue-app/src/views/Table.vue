@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import { tableHeader, items } from "./store";
+import { tableHeader, items } from "../store/master";
 
 const state = reactive({
   isShowItems: false,

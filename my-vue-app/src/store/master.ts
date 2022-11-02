@@ -12,3 +12,9 @@ export type items = {
   value: string;
   type: type;
 };
+
+export type Tab = {
+  key: string;
+  label: string;
+  icon: string;
+};

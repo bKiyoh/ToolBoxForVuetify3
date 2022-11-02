@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import BaseTab, { Tab } from "../components/BaseTab.vue";
+import BaseTab from "../components/BaseTab.vue";
 import { fooTab, hogeTab } from "../components/tabs";
+import { Tab } from "@/store/master";
 
 const state = reactive({
   selectedTab: 0,

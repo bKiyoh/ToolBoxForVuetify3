@@ -32,6 +32,11 @@ const navigations: Array<Navigation> = [
     name: "Tabs",
     icon: "mdi-folder-table-outline ",
   },
+  {
+    label: "SEARCH",
+    name: "Search",
+    icon: "mdi-magnify",
+  },
 ];
 </script>
 
@@ -53,11 +58,12 @@ const navigations: Array<Navigation> = [
     </v-btn>
 
     <v-menu left bottom>
-      <template v-slot:activator="{ on, attrs }">
+      <!-- todo:ripple="false"エラーがでるので要調査 -->
+      <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
-      </template>
+      </template> -->
 
       <v-list>
         <v-list-item v-for="n in 5" :key="n" @click="() => {}">

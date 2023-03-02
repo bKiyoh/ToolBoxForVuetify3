@@ -16,6 +16,11 @@ const tabs: Array<Tab> = [
 
 <template>
   <v-container>
+    <v-row>
+      <v-col>
+        <h1>タブ</h1>
+      </v-col>
+    </v-row>
     <v-row class="text-center">
       <v-col>
         <v-card color="basil" background-color="success">

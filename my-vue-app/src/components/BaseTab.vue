@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Tab} from '../store/master'
+import { Tab } from "../store/master";
 
 // 親コンポーネントから子コンポーネント（this）から渡される値を宣言
 const props = defineProps<{

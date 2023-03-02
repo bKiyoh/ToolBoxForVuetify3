@@ -100,6 +100,51 @@ const tableItems: Array<items> = [
                 </v-row>
               </v-col>
             </v-row>
+
+            <v-row>
+              <v-col>
+                <v-row dense align="center">
+                  <v-col>
+                    <h5>特定の条件に合致したテーブルを常時表示する</h5>
+                  </v-col>
+                  <v-col cols="auto">
+                    <v-checkbox
+                      label="全てのメンバーを見る"
+                      v-model="state.isShowItems"
+                      value="value"
+                    />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-table show-selct>
+                      <thead>
+                        <tr>
+                          <th
+                            v-for="header in tableHeaders"
+                            :key="header.value"
+                          >
+                            {{ header.text }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          v-for="item in tableItems.filter(
+                            (x) => x.name === 'キリコ' || state.isShowItems
+                          )"
+                          :key="item.name"
+                        >
+                          <td>{{ item.name }}</td>
+                          <td>{{ item.value }}</td>
+                          <td>{{ item.type }}</td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
           </v-container>
         </v-sheet>
       </v-col>

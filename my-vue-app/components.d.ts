@@ -7,16 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BaseSingleSelect: typeof import('./src/components/BaseSingleSelect.vue')['default']
     BaseTab: typeof import('./src/components/BaseTab.vue')['default']
-    copy: typeof import('./src/components/tabs/File copy.vue')['default']
-    File: typeof import('./src/components/tabs/File.vue')['default']
     FooTab: typeof import('./src/components/tabs/fooTab.vue')['default']
-    FundamentalTab: typeof import('./src/components/tabs/fundamentalTab.vue')['default']
     HelloPinia: typeof import('./src/components/HelloPinia.vue')['default']
     HogeTab: typeof import('./src/components/tabs/hogeTab.vue')['default']
     NavigationDrawer: typeof import('./src/components/NavigationDrawer.vue')['default']
-    VTabItem: typeof import('vuetify/lib')['VTabItem']
-    VTabsItems: typeof import('vuetify/lib')['VTabsItems']
-    VTabsSlider: typeof import('vuetify/lib')['VTabsSlider']
   }
 }

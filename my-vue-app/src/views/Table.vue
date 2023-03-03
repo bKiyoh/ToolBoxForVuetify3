@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { tableHeader, items } from "../store/master";
+import BaseSingleSelectVue from "../components/BaseSingleSelect.vue";
 
 const state = reactive({
   isShowItems: false,
+  name: "",
 });
 
 const tableHeaders: Array<tableHeader> = [
@@ -62,11 +64,20 @@ const tableItems: Array<items> = [
                   <v-col>
                     <h5>特定の条件に合致したテーブルを常時表示する</h5>
                   </v-col>
+                </v-row>
+                <v-row>
                   <v-col cols="auto">
                     <v-checkbox
                       label="全てのメンバーを見る"
                       v-model="state.isShowItems"
                       value="value"
+                    />
+                  </v-col>
+                  <v-col cols="3">
+                    <BaseSingleSelectVue
+                      placeholder="ヒーロー"
+                      :items="tableItems.map((x) => x.name)"
+                      v-model="state.name"
                     />
                   </v-col>
                 </v-row>
@@ -86,7 +97,7 @@ const tableItems: Array<items> = [
                       <tbody>
                         <tr
                           v-for="item in tableItems.filter(
-                            (x) => x.name === 'キリコ' || state.isShowItems
+                            (x) => x.name === state.name || state.isShowItems
                           )"
                           :key="item.name"
                         >
@@ -105,14 +116,7 @@ const tableItems: Array<items> = [
               <v-col>
                 <v-row dense align="center">
                   <v-col>
-                    <h5>特定の条件に合致したテーブルを常時表示する</h5>
-                  </v-col>
-                  <v-col cols="auto">
-                    <v-checkbox
-                      label="全てのメンバーを見る"
-                      v-model="state.isShowItems"
-                      value="value"
-                    />
+                    <h5>内容</h5>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -129,12 +133,7 @@ const tableItems: Array<items> = [
                         </tr>
                       </thead>
                       <tbody>
-                        <tr
-                          v-for="item in tableItems.filter(
-                            (x) => x.name === 'キリコ' || state.isShowItems
-                          )"
-                          :key="item.name"
-                        >
+                        <tr v-for="item in tableItems" :key="item.name">
                           <td>{{ item.name }}</td>
                           <td>{{ item.value }}</td>
                           <td>{{ item.type }}</td>

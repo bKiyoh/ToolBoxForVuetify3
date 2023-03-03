@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { tableHeader, items } from "../store/master";
-import { heroType, testItems } from "../constants";
+import { heroType } from "../constants";
 import BaseSingleSelectVue from "../components/BaseSingleSelect.vue";
 import { reactive } from "vue";
 

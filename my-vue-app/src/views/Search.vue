@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { tableHeader, items } from "../store/master";
-import { heroType } from "../constants";
+import { tableHeader } from "../store/master";
+import { heroType, tableItems } from "../constants";
 import BaseSingleSelectVue from "../components/BaseSingleSelect.vue";
 import { reactive } from "vue";
 
@@ -27,23 +27,6 @@ const tableHeaders: Array<tableHeader> = [
     align: "start",
     sortable: true,
     value: "type",
-  },
-];
-const tableItems: Array<items> = [
-  {
-    name: "キリコ",
-    value: "クナイ",
-    type: "Healer",
-  },
-  {
-    name: "ゲンジ",
-    value: "刀",
-    type: "Attacker",
-  },
-  {
-    name: "ハンゾー",
-    value: "弓",
-    type: "Attacker",
   },
 ];
 </script>

@@ -7,7 +7,7 @@ export type tableHeader = {
   value: string;
 };
 
-export type items = {
+export type hero = {
   name: string;
   value: string;
   type: type;

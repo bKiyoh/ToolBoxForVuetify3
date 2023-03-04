@@ -1,5 +1,3 @@
-export type type = "Tank" | "Attacker" | "Healer";
-
 export type tableHeader = {
   text: string;
   align?: "start" | "center" | "end";
@@ -9,8 +7,8 @@ export type tableHeader = {
 
 export type hero = {
   name: string;
-  value: string;
-  type: type;
+  weapon: string;
+  type: string;
 };
 
 export type Tab = {

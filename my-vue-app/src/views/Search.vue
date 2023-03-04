@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { tableHeader } from "../store/master";
-import { heroType, tableItems } from "../constants";
+import { tableItems } from "../constants";
+import { tableHeader, hero } from "../store/master";
+import { initialSearchParams } from "../store/store";
 import BaseSingleSelectVue from "../components/BaseSingleSelect.vue";
 import { reactive } from "vue";
 
-const search = reactive({
-  heroType: "",
-  selectedItem: "",
+const searchParams = reactive({ ...initialSearchParams });
+const state = reactive({
+  name: "",
+  weapon: "",
+  type: "",
+  searchParams: {} as hero,
 });
 
 const tableHeaders: Array<tableHeader> = [
@@ -29,6 +33,19 @@ const tableHeaders: Array<tableHeader> = [
     value: "type",
   },
 ];
+
+const search = () => {
+  state.searchParams = {
+    name: searchParams.name,
+    weapon: searchParams.weapon,
+    type: searchParams.type,
+  };
+};
+
+const clear = () => {
+  Object.assign(state.searchParams, initialSearchParams);
+  Object.assign(searchParams, initialSearchParams);
+};
 </script>
 
 <template>
@@ -44,16 +61,43 @@ const tableHeaders: Array<tableHeader> = [
           <v-container>
             <v-row>
               <v-col>
-                <v-text-field label="Name" placeholder="ヒーロー名" />
+                <v-text-field
+                  label="Name"
+                  placeholder="ヒーロー名"
+                  v-model="searchParams.name"
+                  clearable
+                />
               </v-col>
               <v-col>
-                <v-text-field label="WEAPON" filled placeholder="武器" />
+                <BaseSingleSelectVue
+                  placeholder="武器"
+                  :items="
+                    tableItems
+                      .filter((x, i, self) => {
+                        return (
+                          self.findIndex((obj) => obj.weapon === x.weapon) === i
+                        );
+                      })
+                      .map((x) => x.weapon)
+                  "
+                  v-model="searchParams.weapon"
+                  item-value="value"
+                  item-title="text"
+                />
               </v-col>
               <v-col>
                 <BaseSingleSelectVue
                   placeholder="職"
-                  :items="heroType"
-                  v-model="search.heroType"
+                  :items="
+                    tableItems
+                      .filter((x, i, self) => {
+                        return (
+                          self.findIndex((obj) => obj.type === x.type) === i
+                        );
+                      })
+                      .map((x) => x.type)
+                  "
+                  v-model="searchParams.type"
                   item-value="value"
                   item-title="text"
                 />
@@ -62,10 +106,18 @@ const tableHeaders: Array<tableHeader> = [
             <v-row>
               <v-spacer />
               <v-col cols="auto">
-                <v-btn color="primary" variant="outlined"> クリア </v-btn>
+                <v-btn color="primary" variant="outlined" @click="clear">
+                  クリア
+                </v-btn>
               </v-col>
               <v-col cols="auto">
-                <v-btn prepend-icon="mdi-magnify" color="primary"> 検索 </v-btn>
+                <v-btn
+                  prepend-icon="mdi-magnify"
+                  color="primary"
+                  @click="search"
+                >
+                  検索
+                </v-btn>
               </v-col>
             </v-row>
           </v-container>
@@ -87,9 +139,23 @@ const tableHeaders: Array<tableHeader> = [
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in tableItems" :key="item.name">
+                    <tr
+                      v-for="item in tableItems.filter(
+                        (x) =>
+                          (state.searchParams.name
+                            ? state.searchParams.name === x.name
+                            : true) &&
+                          (state.searchParams.type
+                            ? state.searchParams.type === x.type
+                            : true) &&
+                          (state.searchParams.weapon
+                            ? state.searchParams.weapon === x.weapon
+                            : true)
+                      )"
+                      :key="item.name"
+                    >
                       <td>{{ item.name }}</td>
-                      <td>{{ item.value }}</td>
+                      <td>{{ item.weapon }}</td>
                       <td>{{ item.type }}</td>
                     </tr>
                   </tbody>

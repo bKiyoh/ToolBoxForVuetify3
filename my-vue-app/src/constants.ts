@@ -6,25 +6,31 @@ export const heroType = new Map<string, string>([
   ["Healer", "ヒーラー"],
 ]);
 
+export const weapon = new Map<string, string>([
+  ["Tank", "タンク"],
+  ["Attacker", "アタッカー"],
+  ["Healer", "ヒーラー"],
+]);
+
 export const tableItems: Array<hero> = [
   {
     name: "キリコ",
-    value: "クナイ",
+    weapon: "クナイ",
     type: "Healer",
   },
   {
     name: "ゲンジ",
-    value: "刀",
+    weapon: "刀",
     type: "Attacker",
   },
   {
     name: "ハンゾー",
-    value: "弓",
+    weapon: "弓",
     type: "Attacker",
   },
   {
     name: "ジャンカークイーン",
-    value: "斧",
+    weapon: "斧",
     type: "Tank",
   },
 ];

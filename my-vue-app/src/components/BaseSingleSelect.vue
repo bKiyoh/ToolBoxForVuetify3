@@ -41,5 +41,6 @@ const items = computed(() => {
     :items="items"
     @update:modelValue="onInput"
     variant="outlined"
+    clearable
   />
 </template>

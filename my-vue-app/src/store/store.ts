@@ -1,7 +1,10 @@
-import { hero } from "./master";
+import { TestData } from "./master";
 
-export const initialSearchParams: hero = {
+export const initialSearchParams: TestData = {
+  guid: "",
   name: "",
-  weapon: "",
+  furigana: "",
   type: "",
+  region: "",
+  description: "",
 };

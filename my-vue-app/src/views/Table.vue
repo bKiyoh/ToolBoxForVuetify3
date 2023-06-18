@@ -86,7 +86,6 @@ const tableHeaders: Array<tableHeader> = [
                           :key="item.name"
                         >
                           <td>{{ item.name }}</td>
-                          <td>{{ item.weapon }}</td>
                           <td>{{ item.type }}</td>
                         </tr>
                       </tbody>
@@ -119,7 +118,6 @@ const tableHeaders: Array<tableHeader> = [
                       <tbody>
                         <tr v-for="item in tableItems" :key="item.name">
                           <td>{{ item.name }}</td>
-                          <td>{{ item.weapon }}</td>
                           <td>{{ item.type }}</td>
                         </tr>
                       </tbody>

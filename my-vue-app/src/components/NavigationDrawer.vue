@@ -28,6 +28,11 @@ const navigations: Array<Navigation> = [
     icon: "mdi-table",
   },
   {
+    label: "TABLE2",
+    name: "Table2",
+    icon: "mdi-table",
+  },
+  {
     label: "TABS",
     name: "Tabs",
     icon: "mdi-folder-table-outline ",
@@ -36,6 +41,11 @@ const navigations: Array<Navigation> = [
     label: "SEARCH",
     name: "Search",
     icon: "mdi-magnify",
+  },
+  {
+    label: "SCHEDULE",
+    name: "Schedule",
+    icon: "mdi-calendar-month",
   },
 ];
 </script>

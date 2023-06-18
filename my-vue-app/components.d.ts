@@ -15,5 +15,6 @@ declare module '@vue/runtime-core' {
     HelloPinia: typeof import('./src/components/HelloPinia.vue')['default']
     HogeTab: typeof import('./src/components/tabs/hogeTab.vue')['default']
     NavigationDrawer: typeof import('./src/components/NavigationDrawer.vue')['default']
+    VDataTable: typeof import('vuetify/lib')['VDataTable']
   }
 }

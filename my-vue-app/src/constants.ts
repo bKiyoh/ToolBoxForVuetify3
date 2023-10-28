@@ -215,19 +215,12 @@ export const services = [
   { text: "NHK総合1", value: "g1" },
   { text: "NHK総合2", value: "g2" },
   { text: "NHK Eテレ1", value: "e1" },
-  { text: "NHK Eテレ2", value: "e2" },
-  { text: "NHK Eテレ3", value: "e3" },
   { text: "NHKワンセグ2", value: "e4" },
   { text: "NHK BS1", value: "s1" },
-  { text: "NHK BS1(102ch)", value: "s2" },
   { text: "NHK BSプレミアム", value: "s3" },
-  { text: "NHK BSプレミアム(104ch)", value: "s4" },
   { text: "NHKラジオ第1", value: "r1" },
   { text: "NHKラジオ第2", value: "r2" },
   { text: "NHK FM", value: "r3" },
-  { text: "NHKネットラジオ第1", value: "n1" },
-  { text: "NHKネットラジオ第2", value: "n2" },
-  { text: "NHKネットラジオFM", value: "n3" },
 ];
 
 export const areas = [

@@ -18,9 +18,9 @@ const navigations: Array<Navigation> = [
     icon: "mdi-home",
   },
   {
-    label: "ABOUT",
-    name: "About",
-    icon: "mdi-vuetify",
+    label: "TODOLIST",
+    name: "ToDoList",
+    icon: "mdi-check",
   },
   {
     label: "TABLE",
@@ -28,13 +28,8 @@ const navigations: Array<Navigation> = [
     icon: "mdi-table",
   },
   {
-    label: "TABLE2",
-    name: "Table2",
-    icon: "mdi-table",
-  },
-  {
-    label: "TABS",
-    name: "Tabs",
+    label: "TAB",
+    name: "Tab",
     icon: "mdi-folder-table-outline ",
   },
   {

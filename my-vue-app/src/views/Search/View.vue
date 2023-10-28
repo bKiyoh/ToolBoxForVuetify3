@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, computed } from "vue";
 import dayjs from "dayjs";
-import { testRepository } from "../repository/repos/testRepository";
+import { testRepository } from "../../repository/repos/testRepository";
 import {
   GetProgramListRequest,
   GetProgramListResponse,
@@ -9,7 +9,7 @@ import {
 } from "@/repository/@types/program";
 import { VDataTable } from "vuetify/lib/labs/components.mjs";
 import { DataTableHeader } from "@/store/master";
-import { services, areas } from "../constants";
+import { services, areas } from "../../constants";
 
 const searchParams: GetProgramListRequest = reactive({
   area: "130",
@@ -28,36 +28,41 @@ const tableHeaders: DataTableHeader[] = [
     align: "start",
     sortable: true,
     key: "broadcastTime",
+    width: 150,
   },
   {
     title: "タイトル",
     align: "start",
     sortable: true,
     key: "title",
+    width: 400,
   },
   {
     title: "サブタイトル",
     align: "start",
     sortable: true,
     key: "subtitle",
+    width: 400,
   },
   {
     title: "コンテント",
     align: "start",
     sortable: true,
     key: "content",
+    width: 400,
   },
   {
     title: "出演者",
     align: "start",
     sortable: true,
     key: "act",
+    width: 200,
   },
 ];
 
 const search = async () => {
   state.items = await testRepository.getProgram(searchParams);
-  buildItems(searchParams.service);
+  state.selectItems = buildItems(searchParams.service);
 };
 
 const buildItems = (service: string) => {
@@ -65,22 +70,15 @@ const buildItems = (service: string) => {
     ["g1", state.items.list.g1],
     ["g2", state.items.list.g2],
     ["e1", state.items.list.e1],
-    ["e2", state.items.list.e2],
-    ["e3", state.items.list.e3],
     ["e4", state.items.list.e4],
     ["s1", state.items.list.s1],
-    ["s2", state.items.list.s2],
     ["s3", state.items.list.s3],
-    ["s4", state.items.list.s4],
     ["r1", state.items.list.r1],
     ["r2", state.items.list.r2],
     ["r3", state.items.list.r3],
-    ["n1", state.items.list.n1],
-    ["n2", state.items.list.n2],
-    ["n3", state.items.list.n3],
   ]);
 
-  state.selectItems = itemMappings.get(service) || [];
+  return itemMappings.get(service) || [];
 };
 
 const formattedItems = computed(() =>
@@ -106,16 +104,17 @@ const dates = computed(() => {
   <v-container>
     <v-row>
       <v-col>
-        <h1>テーブル</h1>
+        <h1>Search</h1>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <v-select
+        <v-autocomplete
           label="地域"
           :items="areas"
           item-title="text"
           item-value="value"
+          variant="outlined"
           v-model="searchParams.area"
         />
       </v-col>

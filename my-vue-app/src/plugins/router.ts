@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
-import Table from "../views/Table.vue";
-import Table2 from "../views/Table2.vue";
-import Tabs from "../views/Tabs.vue";
-import Search from "../views/Search.vue";
+import ToDoList from "../views/ToDoList/View.vue";
+import Table from "../views/Table/View.vue";
+import Tab from "../views/Tab/View.vue";
+import Search from "../views/Search/View.vue";
 import Schedule from "../views/Schedule/View.vue";
 const routes = [
   {
@@ -13,9 +12,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    component: About,
+    path: "/toDoList",
+    name: "ToDoList",
+    component: ToDoList,
   },
   {
     path: "/table",
@@ -23,14 +22,9 @@ const routes = [
     component: Table,
   },
   {
-    path: "/table2",
-    name: "Table2",
-    component: Table2,
-  },
-  {
-    path: "/tabs",
-    name: "Tabs",
-    component: Tabs,
+    path: "/tab",
+    name: "Tab",
+    component: Tab,
   },
   {
     path: "/search",

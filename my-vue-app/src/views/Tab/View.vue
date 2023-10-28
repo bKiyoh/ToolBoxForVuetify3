@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import BaseTab from "../components/BaseTab.vue";
-import { fooTab, hogeTab } from "../components/tabs";
+import BaseTab from "../../components/BaseTab.vue";
+import { fooTab, hogeTab } from "./components";
 import { Tab } from "@/store/master";
 
 const state = reactive({
@@ -9,8 +9,8 @@ const state = reactive({
 });
 
 const tabs: Array<Tab> = [
-  { key: "fooInfo", label: "フー", icon: "mdi-alien-outline" },
-  { key: "hogeInfo", label: "ホゲ", icon: "mdi-emoticon-devil-outline" },
+  { key: "fooInfo", label: "foo", icon: "mdi-alien-outline" },
+  { key: "hogeInfo", label: "hoge", icon: "mdi-emoticon-devil-outline" },
 ];
 </script>
 
@@ -18,15 +18,12 @@ const tabs: Array<Tab> = [
   <v-container>
     <v-row>
       <v-col>
-        <h1>タブ</h1>
+        <h1>Tab</h1>
       </v-col>
     </v-row>
     <v-row class="text-center">
       <v-col>
         <v-card color="basil" background-color="success">
-          <v-card-title class="text-center justify-center py-6">
-            <h1 class="font-weight-bold text-h2 text-basil">BASiL</h1>
-          </v-card-title>
           <BaseTab
             :tabs="tabs"
             :value="state.selectedTab"
@@ -45,3 +42,4 @@ const tabs: Array<Tab> = [
     </v-row>
   </v-container>
 </template>
+./tabs

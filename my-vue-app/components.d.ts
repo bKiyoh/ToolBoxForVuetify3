@@ -16,5 +16,6 @@ declare module '@vue/runtime-core' {
     HogeTab: typeof import('./src/components/tabs/hogeTab.vue')['default']
     NavigationDrawer: typeof import('./src/components/NavigationDrawer.vue')['default']
     VDataTable: typeof import('vuetify/lib')['VDataTable']
+    VListItemSubTitle: typeof import('vuetify/lib')['VListItemSubTitle']
   }
 }

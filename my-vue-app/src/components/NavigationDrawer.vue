@@ -99,7 +99,7 @@ const themeDependentIcon = computed(() =>
         :key="i"
         :value="item"
         :to="item"
-        active-color="info"
+        color="info"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>

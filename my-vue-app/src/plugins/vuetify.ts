@@ -9,4 +9,7 @@ export default createVuetify({
   components: {
     VDataTable,
   },
+  theme: {
+    defaultTheme: "light",
+  },
 });

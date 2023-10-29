@@ -9,8 +9,8 @@ const state = reactive({
 });
 
 const tabs: Array<Tab> = [
-  { key: "fooInfo", label: "foo", icon: "mdi-alien-outline" },
-  { key: "hogeInfo", label: "hoge", icon: "mdi-emoticon-devil-outline" },
+  { key: "fooInfo", label: "Foo", icon: "mdi-alien-outline" },
+  { key: "hogeInfo", label: "Hoge", icon: "mdi-emoticon-devil-outline" },
 ];
 </script>
 
@@ -23,7 +23,7 @@ const tabs: Array<Tab> = [
     </v-row>
     <v-row class="text-center">
       <v-col>
-        <v-card color="basil" background-color="success">
+        <v-card>
           <BaseTab
             :tabs="tabs"
             :value="state.selectedTab"

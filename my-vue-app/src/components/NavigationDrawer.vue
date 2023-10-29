@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
+import { useTheme } from "vuetify/lib/framework.mjs";
 
 type Navigation = { label: string; name: string; icon: string };
 
+const theme = useTheme();
+
 const state = reactive({
   navigationDrawer: true,
+  isNightMode: false,
 });
 
-const setNavigationDrawer = () => {
-  state.navigationDrawer = !state.navigationDrawer;
-};
-
-const navigations: Array<Navigation> = [
+const navigation: Array<Navigation> = [
   {
     label: "TOP",
     name: "Home",
@@ -43,26 +43,39 @@ const navigations: Array<Navigation> = [
     icon: "mdi-calendar-month",
   },
 ];
+
+const setNavigationDrawer = () => {
+  state.navigationDrawer = !state.navigationDrawer;
+};
+
+const toggleTheme = () => {
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+};
+
+const themeDependentIcon = computed(() =>
+  theme.global.name.value === "light"
+    ? "mdi-weather-sunny"
+    : "mdi-weather-night"
+);
 </script>
 
 <template>
   <!-- header -->
-  <v-app-bar app clipped-left color="deep-purple accent-4">
-    <v-app-bar-nav-icon @click="setNavigationDrawer()" />
+  <v-app-bar app>
+    <v-toolbar>
+      <v-app-bar-nav-icon @click="setNavigationDrawer()" />
+      <v-toolbar-title class="font-weight-bold"
+        >ToolBox For Vuetify3</v-toolbar-title
+      >
 
-    <v-toolbar-title>Page title</v-toolbar-title>
+      <v-spacer />
 
-    <v-spacer></v-spacer>
+      <v-btn v-model="state.isNightMode" @click="toggleTheme" icon
+        ><v-icon>{{ themeDependentIcon }}</v-icon></v-btn
+      >
+    </v-toolbar>
 
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-
-    <v-menu left bottom>
+    <v-menu>
       <!-- todo:ripple="false"エラーがでるので要調査 -->
       <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
@@ -81,13 +94,12 @@ const navigations: Array<Navigation> = [
   <!-- navigationBar -->
   <v-navigation-drawer app clipped v-model="state.navigationDrawer">
     <v-list>
-      <v-list-subheader>Vuetify</v-list-subheader>
       <v-list-item
-        v-for="(item, i) in navigations"
+        v-for="(item, i) in navigation"
         :key="i"
         :value="item"
         :to="item"
-        active-color="primary"
+        active-color="info"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>

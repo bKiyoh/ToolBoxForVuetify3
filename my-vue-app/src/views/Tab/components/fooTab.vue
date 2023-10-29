@@ -4,7 +4,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>foo</h1>
+        <h1>Foo</h1>
       </v-col>
     </v-row>
   </v-container>

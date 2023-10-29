@@ -67,22 +67,22 @@ const header: Array<{ memberName: string; memberId: string; color: string }> = [
   {
     memberName: "NHK総合1",
     memberId: "g1",
-    color: "#3A98B9",
+    color: "#A8A8A8",
   },
   {
     memberName: "NHK Eテレ1",
     memberId: "e1",
-    color: "#FFF1DC",
+    color: "#959595",
   },
   {
     memberName: "NHK BS1",
     memberId: "s1",
-    color: "#E8D5C4",
+    color: "#8A8A8A",
   },
   {
     memberName: "NHK BSプレミアム",
     memberId: "s3",
-    color: "#EEEEEE",
+    color: "#7F7F7F",
   },
 ];
 

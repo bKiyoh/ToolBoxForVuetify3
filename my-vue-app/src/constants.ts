@@ -1,17 +1,5 @@
 import { TestData } from "./store/master";
 
-export const heroType = new Map<string, string>([
-  ["Tank", "タンク"],
-  ["Attacker", "アタッカー"],
-  ["Healer", "ヒーラー"],
-]);
-
-export const weapon = new Map<string, string>([
-  ["Tank", "タンク"],
-  ["Attacker", "アタッカー"],
-  ["Healer", "ヒーラー"],
-]);
-
 export const tableItems: Array<TestData> = [
   {
     guid: "1",

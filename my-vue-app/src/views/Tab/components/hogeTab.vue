@@ -4,7 +4,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>hoge</h1>
+        <h1>Hoge</h1>
       </v-col>
     </v-row>
   </v-container>

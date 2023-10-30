@@ -8,12 +8,14 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src && prettier -w src/**/*.{ts,vue}",
     "check": "npm run lint && vue-tsc --noEmit",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
     "@types/node": "^18.14.4",
     "dayjs": "^1.11.7",
+    "gh-pages": "^6.0.0",
     "ky": "^0.33.3",
     "pinia": "^2.0.32",
     "prettier": "^2.8.4",

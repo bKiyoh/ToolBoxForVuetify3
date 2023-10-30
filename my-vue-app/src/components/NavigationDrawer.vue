@@ -14,7 +14,7 @@ const state = reactive({
 const navigation: Array<Navigation> = [
   {
     label: "TOP",
-    name: "Home",
+    name: "Top",
     icon: "mdi-home",
   },
   {

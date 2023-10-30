@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Top from "../views/Top/View.vue";
 import ToDoList from "../views/ToDoList/View.vue";
 import Table from "../views/Table/View.vue";
 import Tab from "../views/Tab/View.vue";
@@ -8,8 +8,8 @@ import Schedule from "../views/Schedule/View.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Top",
+    component: Top,
   },
   {
     path: "/toDoList",
@@ -32,7 +32,7 @@ const routes = [
     component: Search,
   },
   {
-    path: "/Schedule/View",
+    path: "/schedule",
     name: "Schedule",
     component: Schedule,
   },

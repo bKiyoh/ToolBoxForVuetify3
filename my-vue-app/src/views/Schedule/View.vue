@@ -9,6 +9,10 @@ import {
 import { testRepository } from "../../repository/repos/testRepository";
 import { onBeforeMount } from "vue";
 import { areas } from "../../constants";
+import { useApiKey } from "../../store/keyStore";
+import ApiKeyTextfield from "../../components/ApiKeyTextfield.vue";
+
+const apiKeyStore = useApiKey();
 
 const initialItems = {
   list: {
@@ -98,32 +102,44 @@ const selectItems = (service: string) => {
 
 const search = async () => {
   state.items.list.g1 = (
-    await testRepository.getProgram({
-      area: searchParams.area,
-      service: "g1",
-      date: searchParams.date,
-    })
+    await testRepository.getProgram(
+      {
+        area: searchParams.area,
+        service: "g1",
+        date: searchParams.date,
+      },
+      apiKeyStore.$state.apiKey
+    )
   ).list.g1;
   state.items.list.e1 = (
-    await testRepository.getProgram({
-      area: searchParams.area,
-      service: "e1",
-      date: searchParams.date,
-    })
+    await testRepository.getProgram(
+      {
+        area: searchParams.area,
+        service: "e1",
+        date: searchParams.date,
+      },
+      apiKeyStore.$state.apiKey
+    )
   ).list.e1;
   state.items.list.s1 = (
-    await testRepository.getProgram({
-      area: searchParams.area,
-      service: "s1",
-      date: searchParams.date,
-    })
+    await testRepository.getProgram(
+      {
+        area: searchParams.area,
+        service: "s1",
+        date: searchParams.date,
+      },
+      apiKeyStore.$state.apiKey
+    )
   ).list.s1;
   state.items.list.s3 = (
-    await testRepository.getProgram({
-      area: searchParams.area,
-      service: "s3",
-      date: searchParams.date,
-    })
+    await testRepository.getProgram(
+      {
+        area: searchParams.area,
+        service: "s3",
+        date: searchParams.date,
+      },
+      apiKeyStore.$state.apiKey
+    )
   ).list.s3;
 };
 
@@ -136,17 +152,24 @@ const dates = computed(() => {
   );
 });
 
-onBeforeMount(() => search());
+onBeforeMount(() => {
+  if (apiKeyStore.$state.apiKey.length !== 0) search();
+});
 </script>
 
 <template>
   <v-container>
     <v-row>
       <v-col>
-        <h1>Schedule</h1>
+        <h1>Schedule (NHK番組表)</h1>
       </v-col>
     </v-row>
-    <v-row justify="center" align="center">
+    <v-row>
+      <v-col>
+        <ApiKeyTextfield v-model="apiKeyStore.$state.apiKey" />
+      </v-col>
+    </v-row>
+    <v-row justify="center" align="center" dense>
       <v-col>
         <v-autocomplete
           label="地域"
@@ -162,7 +185,11 @@ onBeforeMount(() => search());
       </v-col>
       <v-spacer />
       <v-col cols="auto">
-        <v-btn @click="search">検索</v-btn>
+        <v-btn
+          @click="search"
+          :disabled="apiKeyStore.$state.apiKey.length === 0"
+          >検索</v-btn
+        >
       </v-col>
     </v-row>
     <v-row class="text-center">
@@ -174,19 +201,22 @@ onBeforeMount(() => search());
         {{ x.memberName }}
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="selectItems.length !== 0">
       <v-col v-for="x in header" :key="x.memberId">
         <v-row class="flex-column event-row">
+          <!-- TODO:初期表示時にcolが一つ生成されてしまう -->
           <v-col v-for="s in selectItems(x.memberId)" :key="s.id">
-            <div>
-              {{ dayjs(s.start_time).format("HH:mm") }}-{{
-                dayjs(s.end_time).format("HH:mm")
+            <div v-if="s.content">
+              {{
+                `${dayjs(s.start_time).format("HH:mm") ?? ""}-${dayjs(
+                  s.end_time
+                ).format("HH:mm")}`
               }}
             </div>
             <div class="my-1">
               <p>{{ s.title }}</p>
             </div>
-            <v-expansion-panels>
+            <v-expansion-panels class="my-2" v-if="s.content">
               <v-expansion-panel
                 title="詳細"
                 :text="s.content"

@@ -10,11 +10,15 @@ import {
 import { VDataTable } from "vuetify/lib/labs/components.mjs";
 import { DataTableHeader } from "@/store/master";
 import { services, areas } from "../../constants";
+import { useApiKey } from "../../store/keyStore";
+
+const apiKeyStore = useApiKey();
 
 const searchParams: GetProgramListRequest = reactive({
   area: "130",
   service: "g1",
   date: `${dayjs().format("YYYY-MM-DD")}`,
+  apiKey: "",
 });
 
 const state = reactive({
@@ -61,7 +65,10 @@ const tableHeaders: DataTableHeader[] = [
 ];
 
 const search = async () => {
-  state.items = await testRepository.getProgram(searchParams);
+  state.items = await testRepository.getProgram(
+    searchParams,
+    apiKeyStore.$state.apiKey
+  );
   state.selectItems = buildItems(searchParams.service);
 };
 
@@ -104,10 +111,15 @@ const dates = computed(() => {
   <v-container>
     <v-row>
       <v-col>
-        <h1>Search</h1>
+        <h1>Search (NHK番組表)</h1>
       </v-col>
     </v-row>
     <v-row>
+      <v-col>
+        <ApiKeyTextfield v-model="apiKeyStore.$state.apiKey" />
+      </v-col>
+    </v-row>
+    <v-row dense>
       <v-col>
         <v-autocomplete
           label="地域"
@@ -124,17 +136,27 @@ const dates = computed(() => {
           :items="services"
           item-title="text"
           item-value="value"
+          variant="outlined"
           v-model="searchParams.service"
         />
       </v-col>
       <v-col>
-        <v-select label="日付" :items="dates" v-model="searchParams.date" />
+        <v-select
+          label="日付"
+          :items="dates"
+          variant="outlined"
+          v-model="searchParams.date"
+        />
       </v-col>
     </v-row>
     <v-row dense>
       <v-spacer />
       <v-col cols="auto">
-        <v-btn @click="search">検索</v-btn>
+        <v-btn
+          @click="search"
+          :disabled="apiKeyStore.$state.apiKey.length === 0"
+          >検索</v-btn
+        >
       </v-col>
     </v-row>
     <v-row>
@@ -144,3 +166,4 @@ const dates = computed(() => {
     </v-row>
   </v-container>
 </template>
+../../store/keyStore

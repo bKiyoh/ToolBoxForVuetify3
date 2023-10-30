@@ -8,7 +8,7 @@ import Schedule from "../views/Schedule/View.vue";
 const routes = [
   {
     path: "/",
-    name: "Top",
+    name: "",
     component: Top,
   },
   {
@@ -38,7 +38,7 @@ const routes = [
   },
 ];
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 export default router;

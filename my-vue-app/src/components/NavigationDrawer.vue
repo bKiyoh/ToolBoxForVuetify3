@@ -14,7 +14,7 @@ const state = reactive({
 const navigation: Array<Navigation> = [
   {
     label: "TOP",
-    name: "Top",
+    name: "/",
     icon: "mdi-home",
   },
   {
@@ -98,7 +98,7 @@ const themeDependentIcon = computed(() =>
         v-for="(item, i) in navigation"
         :key="i"
         :value="item"
-        :to="item"
+        :to="item.name"
         color="info"
       >
         <template v-slot:prepend>

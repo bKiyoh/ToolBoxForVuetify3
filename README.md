@@ -1,6 +1,6 @@
 # ToolBoxForVuetify3
 
-## このサイトはVue2.7、Vuetify2の開発で得た知見を活かし、Vue3,Vuetify3で作成しました
+## このサイトはVue2.7,Vuetify2の開発で得た知見を活かし、Vue3,Vuetify3で作成しました
 
 以下は使用された主な技術についての情報です
 

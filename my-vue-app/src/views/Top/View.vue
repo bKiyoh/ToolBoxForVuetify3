@@ -6,9 +6,9 @@
       <v-col class="mb-4">
         <h1 class="display-1 font-weight-bold mb-3">ToolBox For Vuetify3</h1>
 
-        <h2>
-          このサイトはVue3とVuetify3の開発で得た知見を活かして作成しました
-        </h2>
+        <h3>
+          このサイトはVue2.7,Vuetify2の開発で得た知見を活かし、Vue3,Vuetify3で作成しました
+        </h3>
       </v-col>
 
       <v-col class="mb-5" cols="12">

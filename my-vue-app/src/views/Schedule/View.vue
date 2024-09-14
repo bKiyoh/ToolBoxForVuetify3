@@ -8,14 +8,14 @@ import {
 } from "@/repository/@types/program";
 import { testRepository } from "../../repository/repos/testRepository";
 import { onBeforeMount } from "vue";
-import { areas } from "../../constants";
+import { areas, ServiceTexts, ServiceValues } from "../../constants";
 import { useApiKey } from "../../store/keyStore";
 
 const apiKeyStore = useApiKey();
 
 const initialItems = {
   list: {
-    g1: [
+    [ServiceValues.NHK_SOGO_1]: [
       {
         id: "",
         event_id: "",
@@ -68,78 +68,84 @@ const state = reactive({
 
 const header: Array<{ memberName: string; memberId: string; color: string }> = [
   {
-    memberName: "NHK総合1",
-    memberId: "g1",
+    memberName: ServiceTexts.NHK_SOGO_1,
+    memberId: ServiceValues.NHK_SOGO_1,
     color: "#A8A8A8",
   },
   {
-    memberName: "NHK Eテレ1",
-    memberId: "e1",
+    memberName: ServiceTexts.NHK_ETV_1,
+    memberId: ServiceValues.NHK_ETV_1,
     color: "#959595",
   },
   {
-    memberName: "NHK BS1",
-    memberId: "s1",
+    memberName: ServiceTexts.NHK_BS1,
+    memberId: ServiceValues.NHK_BS1,
     color: "#8A8A8A",
   },
   {
-    memberName: "NHK BSプレミアム",
-    memberId: "s5",
+    memberName: ServiceTexts.NHK_BS_PREMIUM,
+    memberId: ServiceValues.NHK_BS_PREMIUM,
     color: "#7F7F7F",
   },
 ];
 
 const selectItems = (service: string) => {
   const itemMappings = new Map<string, ProgramElement[]>([
-    ["g1", state.items.list?.g1],
-    ["e1", state.items.list?.e1],
-    ["s1", state.items.list?.s1],
-    ["s5", state.items.list?.s5],
+    [ServiceValues.NHK_SOGO_1, state.items.list?.[ServiceValues.NHK_SOGO_1]],
+    [ServiceValues.NHK_ETV_1, state.items.list?.[ServiceValues.NHK_ETV_1]],
+    [ServiceValues.NHK_BS1, state.items.list?.[ServiceValues.NHK_BS1]],
+    [
+      ServiceValues.NHK_BS_PREMIUM,
+      state.items.list?.[ServiceValues.NHK_BS_PREMIUM],
+    ],
   ]);
   return itemMappings.get(service) || [];
 };
 
 const search = async () => {
-  state.items.list.g1 = (
+  state.items.list[ServiceValues.NHK_SOGO_1] = (
     await testRepository.getProgram(
       {
         area: searchParams.area,
-        service: "g1",
+        service: ServiceValues.NHK_SOGO_1,
         date: searchParams.date,
       },
       apiKeyStore.$state.apiKey
     )
-  ).list.g1;
-  state.items.list.e1 = (
+  ).list[ServiceValues.NHK_SOGO_1];
+
+  state.items.list[ServiceValues.NHK_ETV_1] = (
     await testRepository.getProgram(
       {
         area: searchParams.area,
-        service: "e1",
+        service: ServiceValues.NHK_ETV_1,
         date: searchParams.date,
       },
       apiKeyStore.$state.apiKey
     )
-  ).list.e1;
-  state.items.list.s1 = (
+  ).list[ServiceValues.NHK_ETV_1];
+
+  state.items.list[ServiceValues.NHK_BS1] = (
     await testRepository.getProgram(
       {
         area: searchParams.area,
-        service: "s1",
+        service: ServiceValues.NHK_BS1,
         date: searchParams.date,
       },
       apiKeyStore.$state.apiKey
     )
-  ).list.s1;
-  state.items.list.s5 = (
+  ).list[ServiceValues.NHK_BS1];
+
+  state.items.list[ServiceValues.NHK_BS_PREMIUM] = (
     await testRepository.getProgram(
       {
         area: searchParams.area,
-        service: "s5",
+        service: ServiceValues.NHK_BS_PREMIUM,
         date: searchParams.date,
       },
       apiKeyStore.$state.apiKey
     )
-  ).list.s5;
+  ).list[ServiceValues.NHK_BS_PREMIUM];
 };
 
 const dates = computed(() => {

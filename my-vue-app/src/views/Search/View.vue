@@ -10,6 +10,7 @@ import {
 import { DataTableHeader } from "@/store/master";
 import { services, areas } from "../../constants";
 import { useApiKey } from "../../store/keyStore";
+import { ServiceValues } from "../../constants";
 
 const apiKeyStore = useApiKey();
 
@@ -73,15 +74,18 @@ const search = async () => {
 
 const buildItems = (service: string) => {
   const itemMappings = new Map<string, ProgramElement[]>([
-    ["g1", state.items.list.g1],
-    ["g2", state.items.list.g2],
-    ["e1", state.items.list.e1],
-    ["e4", state.items.list.e4],
-    ["s1", state.items.list.s1],
-    ["s5", state.items.list.s5],
-    ["r1", state.items.list.r1],
-    ["r2", state.items.list.r2],
-    ["r3", state.items.list.r3],
+    [ServiceValues.NHK_SOGO_1, state.items.list[ServiceValues.NHK_SOGO_1]],
+    [ServiceValues.NHK_SOGO_2, state.items.list[ServiceValues.NHK_SOGO_2]],
+    [ServiceValues.NHK_ETV_1, state.items.list[ServiceValues.NHK_ETV_1]],
+    [ServiceValues.NHK_ONESEG_2, state.items.list[ServiceValues.NHK_ONESEG_2]],
+    [ServiceValues.NHK_BS1, state.items.list[ServiceValues.NHK_BS1]],
+    [
+      ServiceValues.NHK_BS_PREMIUM,
+      state.items.list[ServiceValues.NHK_BS_PREMIUM],
+    ],
+    [ServiceValues.NHK_RADIO_1, state.items.list[ServiceValues.NHK_RADIO_1]],
+    [ServiceValues.NHK_RADIO_2, state.items.list[ServiceValues.NHK_RADIO_2]],
+    [ServiceValues.NHK_FM, state.items.list[ServiceValues.NHK_FM]],
   ]);
 
   return itemMappings.get(service) || [];
@@ -160,4 +164,3 @@ const dates = computed(() => {
     </v-row>
   </v-container>
 </template>
-../../store/keyStore

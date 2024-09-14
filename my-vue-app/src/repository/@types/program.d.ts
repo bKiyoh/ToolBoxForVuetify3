@@ -1,3 +1,5 @@
+import { ServiceValues } from "@/constants";
+
 export type AreaElement = {
   id: string;
   name: string;
@@ -39,14 +41,6 @@ export type GetProgramListRequest = {
 
 export type GetProgramListResponse = {
   list: {
-    g1: Array<ProgramElement>;
-    g2: Array<ProgramElement>;
-    e1: Array<ProgramElement>;
-    e4: Array<ProgramElement>;
-    s1: Array<ProgramElement>;
-    s5: Array<ProgramElement>;
-    r1: Array<ProgramElement>;
-    r2: Array<ProgramElement>;
-    r3: Array<ProgramElement>;
+    [key in ServiceValues]: Array<ProgramElement>;
   };
 };

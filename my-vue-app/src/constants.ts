@@ -199,16 +199,40 @@ export const scheduleItems = [
   },
 ];
 
+export enum ServiceTexts {
+  NHK_SOGO_1 = "NHK総合1",
+  NHK_SOGO_2 = "NHK総合2",
+  NHK_ETV_1 = "NHK Eテレ1",
+  NHK_ONESEG_2 = "NHKワンセグ2",
+  NHK_BS1 = "NHK BS1",
+  NHK_BS_PREMIUM = "NHK BSプレミアム",
+  NHK_RADIO_1 = "NHKラジオ第1",
+  NHK_RADIO_2 = "NHKラジオ第2",
+  NHK_FM = "NHK FM",
+}
+
+export enum ServiceValues {
+  NHK_SOGO_1 = "g1",
+  NHK_SOGO_2 = "g2",
+  NHK_ETV_1 = "e1",
+  NHK_ONESEG_2 = "e4",
+  NHK_BS1 = "s1",
+  NHK_BS_PREMIUM = "s5",
+  NHK_RADIO_1 = "r1",
+  NHK_RADIO_2 = "r2",
+  NHK_FM = "r3",
+}
+
 export const services = [
-  { text: "NHK総合1", value: "g1" },
-  { text: "NHK総合2", value: "g2" },
-  { text: "NHK Eテレ1", value: "e1" },
-  { text: "NHKワンセグ2", value: "e4" },
-  { text: "NHK BS1", value: "s1" },
-  { text: "NHK BSプレミアム", value: "s5" },
-  { text: "NHKラジオ第1", value: "r1" },
-  { text: "NHKラジオ第2", value: "r2" },
-  { text: "NHK FM", value: "r3" },
+  { text: ServiceTexts.NHK_SOGO_1, value: ServiceValues.NHK_SOGO_1 },
+  { text: ServiceTexts.NHK_SOGO_2, value: ServiceValues.NHK_SOGO_2 },
+  { text: ServiceTexts.NHK_ETV_1, value: ServiceValues.NHK_ETV_1 },
+  { text: ServiceTexts.NHK_ONESEG_2, value: ServiceValues.NHK_ONESEG_2 },
+  { text: ServiceTexts.NHK_BS1, value: ServiceValues.NHK_BS1 },
+  { text: ServiceTexts.NHK_BS_PREMIUM, value: ServiceValues.NHK_BS_PREMIUM },
+  { text: ServiceTexts.NHK_RADIO_1, value: ServiceValues.NHK_RADIO_1 },
+  { text: ServiceTexts.NHK_RADIO_2, value: ServiceValues.NHK_RADIO_2 },
+  { text: ServiceTexts.NHK_FM, value: ServiceValues.NHK_FM },
 ];
 
 export const areas = [

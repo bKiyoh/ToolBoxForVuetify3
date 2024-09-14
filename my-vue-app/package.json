@@ -17,13 +17,13 @@
     "dayjs": "^1.11.7",
     "gh-pages": "^6.0.0",
     "ky": "^0.33.3",
-    "pinia": "^2.0.32",
+    "pinia": "^2.2.2",
     "prettier": "^2.8.4",
     "roboto-fontface": "*",
     "sass": "^1.58.3",
-    "vue": "^3.2.47",
-    "vue-router": "^4.1.6",
-    "vuetify": "^3.1.7",
+    "vue": "^3.5.5",
+    "vue-router": "^4.4.5",
+    "vuetify": "^3.7.1",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

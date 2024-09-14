@@ -7,7 +7,6 @@ import {
   GetProgramListResponse,
   ProgramElement,
 } from "@/repository/@types/program";
-import { VDataTable } from "vuetify/lib/labs/components.mjs";
 import { DataTableHeader } from "@/store/master";
 import { services, areas } from "../../constants";
 import { useApiKey } from "../../store/keyStore";

@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { defineModel, computed } from "vue";
 
 type ItemValue = string | number | boolean | bigint | symbol;
 
 const props = defineProps<{
-  value?: ItemValue | Array<ItemValue>;
   required?: boolean;
   items: Array<unknown> | Map<string, ItemValue>;
 }>();
-const emit = defineEmits(["input"]);
-const onInput = (e: unknown) => emit("input", e);
+
+const modelValue = defineModel<ItemValue | Array<ItemValue>>();
 
 const items = computed(() => {
   if (props.items instanceof Map) {
@@ -22,10 +21,9 @@ const items = computed(() => {
 <template>
   <v-autocomplete
     v-bind:="$attrs"
-    :modelValue="props.value"
+    v-model="modelValue"
     :items="items"
-    @update:modelValue="onInput"
     variant="outlined"
     clearable
-  />
+  ></v-autocomplete>
 </template>

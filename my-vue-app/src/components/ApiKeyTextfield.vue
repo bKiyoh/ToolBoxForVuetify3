@@ -1,12 +1,7 @@
 <script setup lang="ts">
-type ItemValue = string | number | boolean | bigint | symbol;
+import { defineModel } from "vue";
 
-const props = defineProps<{
-  value?: ItemValue | Array<ItemValue>;
-  required?: boolean;
-}>();
-const emit = defineEmits(["input"]);
-const onInput = (e: unknown) => emit("input", e);
+const modelValue = defineModel<string>();
 
 const rules = {
   required: (value: string) => !!value || "ApiKey必須入力です",
@@ -15,11 +10,13 @@ const rules = {
 
 <template>
   <v-text-field
-    :modelValue="props.value"
-    @update:modelValue="onInput"
-    label="Api Key"
-    hint="NHK番組表APIからKeyを取得して入力してください"
+    v-model="modelValue"
+    prepend-icon="mdi-key"
+    variant="solo-filled"
+    label="NHK番組表APIからKeyを取得して入力してください"
     :rules="[rules.required]"
     clearable
-  />
+    hideDetails
+    flat
+  ></v-text-field>
 </template>

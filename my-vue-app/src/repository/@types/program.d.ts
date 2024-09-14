@@ -44,7 +44,7 @@ export type GetProgramListResponse = {
     e1: Array<ProgramElement>;
     e4: Array<ProgramElement>;
     s1: Array<ProgramElement>;
-    s3: Array<ProgramElement>;
+    s5: Array<ProgramElement>;
     r1: Array<ProgramElement>;
     r2: Array<ProgramElement>;
     r3: Array<ProgramElement>;

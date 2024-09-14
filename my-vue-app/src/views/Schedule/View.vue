@@ -10,7 +10,6 @@ import { testRepository } from "../../repository/repos/testRepository";
 import { onBeforeMount } from "vue";
 import { areas } from "../../constants";
 import { useApiKey } from "../../store/keyStore";
-import ApiKeyTextfield from "../../components/ApiKeyTextfield.vue";
 
 const apiKeyStore = useApiKey();
 
@@ -85,7 +84,7 @@ const header: Array<{ memberName: string; memberId: string; color: string }> = [
   },
   {
     memberName: "NHK BSプレミアム",
-    memberId: "s3",
+    memberId: "s5",
     color: "#7F7F7F",
   },
 ];
@@ -95,7 +94,7 @@ const selectItems = (service: string) => {
     ["g1", state.items.list?.g1],
     ["e1", state.items.list?.e1],
     ["s1", state.items.list?.s1],
-    ["s3", state.items.list?.s3],
+    ["s5", state.items.list?.s5],
   ]);
   return itemMappings.get(service) || [];
 };
@@ -131,16 +130,16 @@ const search = async () => {
       apiKeyStore.$state.apiKey
     )
   ).list.s1;
-  state.items.list.s3 = (
+  state.items.list.s5 = (
     await testRepository.getProgram(
       {
         area: searchParams.area,
-        service: "s3",
+        service: "s5",
         date: searchParams.date,
       },
       apiKeyStore.$state.apiKey
     )
-  ).list.s3;
+  ).list.s5;
 };
 
 const dates = computed(() => {
@@ -164,11 +163,6 @@ onBeforeMount(() => {
         <h1>Schedule (NHK番組表)</h1>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col>
-        <ApiKeyTextfield v-model="apiKeyStore.$state.apiKey" />
-      </v-col>
-    </v-row>
     <v-row justify="center" align="center" dense>
       <v-col>
         <v-autocomplete
@@ -185,11 +179,9 @@ onBeforeMount(() => {
       </v-col>
       <v-spacer />
       <v-col cols="auto">
-        <v-btn
-          @click="search"
-          :disabled="apiKeyStore.$state.apiKey.length === 0"
-          >検索</v-btn
-        >
+        <v-btn @click="search" :disabled="!apiKeyStore.$state.apiKey">
+          検索
+        </v-btn>
       </v-col>
     </v-row>
     <v-row class="text-center">

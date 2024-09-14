@@ -205,7 +205,7 @@ export const services = [
   { text: "NHK Eテレ1", value: "e1" },
   { text: "NHKワンセグ2", value: "e4" },
   { text: "NHK BS1", value: "s1" },
-  { text: "NHK BSプレミアム", value: "s3" },
+  { text: "NHK BSプレミアム", value: "s5" },
   { text: "NHKラジオ第1", value: "r1" },
   { text: "NHKラジオ第2", value: "r2" },
   { text: "NHK FM", value: "r3" },

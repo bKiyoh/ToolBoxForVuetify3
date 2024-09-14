@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { reactive, computed } from "vue";
 import { useTheme } from "vuetify/lib/framework.mjs";
+import ApiKeyTextfield from "../components/ApiKeyTextfield.vue";
+import { useApiKey } from "../store/keyStore";
 
 type Navigation = { label: string; name: string; icon: string };
 
 const theme = useTheme();
+const apiKeyStore = useApiKey();
 
 const state = reactive({
   navigationDrawer: true,
@@ -65,24 +68,16 @@ const themeDependentIcon = computed(() =>
     <v-toolbar>
       <v-app-bar-nav-icon @click="setNavigationDrawer()" />
       <v-toolbar-title class="font-weight-bold"
-        >ToolBox For Vuetify3</v-toolbar-title
-      >
-
-      <v-spacer />
-
-      <v-btn v-model="state.isNightMode" @click="toggleTheme" icon
-        ><v-icon>{{ themeDependentIcon }}</v-icon></v-btn
-      >
+        >ToolBox For Vuetify3
+      </v-toolbar-title>
+      <ApiKeyTextfield v-model="apiKeyStore.$state.apiKey" />
+      <v-spacer></v-spacer>
+      <v-btn v-model="state.isNightMode" @click="toggleTheme" icon>
+        <v-icon>{{ themeDependentIcon }}</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <v-menu>
-      <!-- todo:ripple="false"エラーがでるので要調査 -->
-      <!-- <template v-slot:activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </template> -->
-
       <v-list>
         <v-list-item v-for="n in 5" :key="n" @click="() => {}">
           <v-list-item-title>Option {{ n }}</v-list-item-title>

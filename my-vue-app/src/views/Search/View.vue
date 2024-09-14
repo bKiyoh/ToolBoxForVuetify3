@@ -78,7 +78,7 @@ const buildItems = (service: string) => {
     ["e1", state.items.list.e1],
     ["e4", state.items.list.e4],
     ["s1", state.items.list.s1],
-    ["s3", state.items.list.s3],
+    ["s5", state.items.list.s5],
     ["r1", state.items.list.r1],
     ["r2", state.items.list.r2],
     ["r3", state.items.list.r3],
@@ -111,11 +111,6 @@ const dates = computed(() => {
     <v-row>
       <v-col>
         <h1>Search (NHK番組表)</h1>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <ApiKeyTextfield v-model="apiKeyStore.$state.apiKey" />
       </v-col>
     </v-row>
     <v-row dense>
